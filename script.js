@@ -44,16 +44,20 @@ function generatePattern() {
   };
 
   const selectedOptions = Array.from(
-    document.querySelectorAll(".clickable-option.selected:not([data-id^='matricule'])")
+    document.querySelectorAll(
+      ".clickable-option.selected:not([data-id^='matricule'])"
+    )
   ).map((option) => option.getAttribute("data-id"));
 
   const selectedMatricule = Array.from(
-    document.querySelectorAll(".clickable-option.selected[data-id^='matricule']")
+    document.querySelectorAll(
+      ".clickable-option.selected[data-id^='matricule']"
+    )
   ).map((option) => matricules[option.getAttribute("data-id")])[0];
 
   const autreText = document.getElementById("autreText").value.trim();
   const autreMessage =
-    selectedOptions.includes("autre") && autreText ? `| ${autreText} |` : "";
+    selectedOptions.includes("autre") && autreText ? `${autreText}` : "";
 
   const motifs = selectedOptions
     .map((option) => (option === "autre" ? autreMessage : messages[option]))
@@ -64,7 +68,9 @@ function generatePattern() {
     ? "block"
     : "none";
 
-  const signature = selectedMatricule || ":DivisionSAPA: **Gestionnaire PA - 170 | Dorian Rossini**";
+  const signature =
+    selectedMatricule ||
+    ":DivisionSAPA: **Gestionnaire PA - 170 | Dorian Rossini**";
 
   if (motifs.length > 0) {
     resultDiv.textContent = `Réponse Candidature
@@ -117,9 +123,11 @@ function copyToClipboard() {
 
 function clearForm() {
   document.getElementById("discord").value = "";
-  document.querySelectorAll(".clickable-option:not([data-id^='matricule'])").forEach((option) => {
-    option.classList.remove("selected");
-  });
+  document
+    .querySelectorAll(".clickable-option:not([data-id^='matricule'])")
+    .forEach((option) => {
+      option.classList.remove("selected");
+    });
   document.getElementById("autreText").value = "";
   document.getElementById("autreTextGroup").style.display = "none";
   generatePattern();
