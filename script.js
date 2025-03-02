@@ -33,7 +33,6 @@ function generatePattern() {
     ia: "Suspicion d'utilisation d'IA / Internet",
     iaFlagrant:
       "Utilisation d'IA / Internet flagrant : attente 7 jours avant de repostuler",
-    erreur: "Erreur",
     lspd: "Nous sommes la SAMP et non la LSPD",
   };
 
@@ -46,22 +45,22 @@ function generatePattern() {
 
   const selectedOptions = Array.from(
     document.querySelectorAll(".clickable-option.selected:not([data-id^='matricule'])")
-  ).map((option) => messages[option.getAttribute("data-id")]);
+  ).map((option) => option.getAttribute("data-id"));
 
   const selectedMatricule = Array.from(
     document.querySelectorAll(".clickable-option.selected[data-id^='matricule']")
   ).map((option) => matricules[option.getAttribute("data-id")])[0];
 
-  const erreurText = document.getElementById("erreurText").value.trim();
-  const erreurMessage =
-    selectedOptions.includes("Erreur") && erreurText ? ` : ${erreurText}` : "";
+  const autreText = document.getElementById("autreText").value.trim();
+  const autreMessage =
+    selectedOptions.includes("autre") && autreText ? `| ${autreText} |` : "";
 
-  const motifs = selectedOptions.map((option) =>
-    option === "Erreur" ? option + erreurMessage : option
-  );
+  const motifs = selectedOptions
+    .map((option) => (option === "autre" ? autreMessage : messages[option]))
+    .filter((option) => option !== "");
 
-  const erreurTextGroup = document.getElementById("erreurTextGroup");
-  erreurTextGroup.style.display = selectedOptions.includes("Erreur")
+  const autreTextGroup = document.getElementById("autreTextGroup");
+  autreTextGroup.style.display = selectedOptions.includes("autre")
     ? "block"
     : "none";
 
@@ -121,8 +120,8 @@ function clearForm() {
   document.querySelectorAll(".clickable-option:not([data-id^='matricule'])").forEach((option) => {
     option.classList.remove("selected");
   });
-  document.getElementById("erreurText").value = "";
-  document.getElementById("erreurTextGroup").style.display = "none";
+  document.getElementById("autreText").value = "";
+  document.getElementById("autreTextGroup").style.display = "none";
   generatePattern();
 }
 
