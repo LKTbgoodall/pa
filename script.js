@@ -57,7 +57,7 @@ function generatePattern() {
 
   const autreText = document.getElementById("autreText").value.trim();
   const autreMessage =
-    selectedOptions.includes("autre") && autreText ? `${autreText}` : "";
+    selectedOptions.includes("autre") && autreText ? `| ${autreText} |` : "";
 
   const motifs = selectedOptions
     .map((option) => (option === "autre" ? autreMessage : messages[option]))
@@ -108,17 +108,91 @@ ${signature}`;
 
 function copyToClipboard() {
   const resultDiv = document.getElementById("result");
-  const textToCopy = resultDiv.dataset.textToCopy;
+  const text = resultDiv.textContent;
+
+  navigator.clipboard
+    .writeText(text)
+    .then(() => {
+      console.log("Texte copié dans le presse-papiers.");
+
+      const iaFlagrantSelected = document.querySelector(
+        ".clickable-option[data-id='iaFlagrant'].selected"
+      );
+      if (iaFlagrantSelected) {
+        openSanctionModal();
+      } else {
+        clearForm();
+      }
+    })
+    .catch((err) => {
+      console.error("Erreur lors de la copie :", err);
+    });
+}
+
+function openSanctionModal() {
+  const modal = document.getElementById("sanctionIaModal");
+  const discordInput = document.getElementById("discord").value.trim();
+  const sanctionDiscord = document.getElementById("sanctionDiscord");
+
+  if (discordInput) {
+    if (/^\d+$/.test(discordInput)) {
+      sanctionDiscord.value = `<@${discordInput}>`;
+    } else {
+      sanctionDiscord.value = `@${discordInput}`;
+    }
+  } else {
+    sanctionDiscord.value = "@";
+  }
+
+  const today = new Date();
+  const endDate = new Date(today);
+  endDate.setDate(today.getDate() + 7);
+  const formattedEndDate = endDate.toLocaleDateString("fr-FR");
+
+  document.getElementById("sanctionEndDate").value = formattedEndDate;
+
+  modal.style.display = "block";
+  document.body.classList.add("modal-open");
+
+  modal.addEventListener("wheel", preventScroll, { passive: false });
+  modal.addEventListener("touchmove", preventScroll, { passive: false });
+}
+
+function copySanctionToClipboard() {
+  const uniqueId = document.getElementById("uniqueId").value.trim();
+  const sanctionDiscord = document.getElementById("sanctionDiscord").value;
+  const sanctionEndDate = document.getElementById("sanctionEndDate").value;
+
+  const textToCopy = `**Motif :** Utilisation d'IA / Internet
+**ID Unique :** ${uniqueId}
+**Discord :** ${sanctionDiscord}
+
+**Sanction :** Attente 7 jours
+**Fin de sanction :** ${sanctionEndDate}`;
 
   navigator.clipboard
     .writeText(textToCopy)
     .then(() => {
       console.log("Texte copié dans le presse-papiers.");
+      closeSanctionModal();
       clearForm();
     })
     .catch((err) => {
       console.error("Erreur lors de la copie :", err);
     });
+}
+
+function closeSanctionModal() {
+  const modal = document.getElementById("sanctionIaModal");
+  modal.style.display = "none";
+  document.body.classList.remove("modal-open");
+
+  modal.removeEventListener("wheel", preventScroll);
+  modal.removeEventListener("touchmove", preventScroll);
+}
+
+function preventScroll(event) {
+  event.preventDefault();
 }
 
 function clearForm() {
