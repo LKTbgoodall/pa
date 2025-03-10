@@ -98,7 +98,7 @@ ${signature}`;
   if (selectedOptions.includes("mail")) {
     textToCopy = `**[Réponse Candidature](https://media.discordapp.net/attachments/987832659201916948/1341378164554731541/image0.gif?ex=67c39f04&is=67c24d84&hm=cb806d675647b26426b1c33a844e7652248c41fb12706c056fa11d0ba2519b3c&=)**
 Candidat : ${discordFormate}
-Motifs : Identifiez moi dans un ticket s'il vous plaît
+Motifs : ** Identifiez moi dans un ticket s'il vous plaît **
 Bien à vous,
 ${signature}`;
   } else if (motifs.length > 0) {
