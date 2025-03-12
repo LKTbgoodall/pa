@@ -36,13 +36,13 @@ function generatePattern() {
     lspd: "Nous sommes la SAMP et non la LSPD",
   };
 
-const matricules = {
-  matricule497: ":DivisionSAPA: **Gestionnaire PA - 497 | Flora Sancho**",
-  matricule186: ":DivisionSAPA: **Gestionnaire PA - 186 | Alex Mendes**",
-  matricule305: ":DivisionSAPA: **Gestionnaire PA - 305 | Bijou Boubakar**",
-  matricule003: ":DivisionSAPA: **Gestionnaire PA - 003 | Yahya Gonzalez**",
-  matricule112: ":DivisionSAPA: **Gestionnaire PA - 112 | Adrianna Mendes**",
-};
+  const matricules = {
+    matricule497: ":DivisionSAPA: **Gestionnaire PA - 497 | Flora Sancho**",
+    matricule186: ":DivisionSAPA: **Gestionnaire PA - 186 | Alex Mendes**",
+    matricule305: ":DivisionSAPA: **Gestionnaire PA - 305 | Bijou Boubakar**",
+    matricule003: ":DivisionSAPA: **Gestionnaire PA - 003 | Yahya Gonzalez**",
+    matricule112: ":DivisionSAPA: **Gestionnaire PA - 112 | Adrianna Mendes**",
+  };
 
   const selectedOptions = Array.from(
     document.querySelectorAll(
@@ -115,11 +115,94 @@ function copyToClipboard() {
     .writeText(textToCopy)
     .then(() => {
       console.log("Texte copié dans le presse-papiers.");
-      clearForm();
+
+      // Vérifier si "Utilisation d'IA / Internet flagrant" est sélectionné
+      const selectedOptions = Array.from(
+        document.querySelectorAll(
+          ".clickable-option.selected:not([data-id^='matricule'])"
+        )
+      ).map((option) => option.getAttribute("data-id"));
+
+      if (selectedOptions.includes("iaFlagrant")) {
+        // Ouvrir la popup de sanction après avoir copié le message principal
+        showSanctionPage();
+      } else {
+        // Réinitialiser le formulaire si "iaFlagrant" n'est pas sélectionné
+        clearForm();
+      }
     })
     .catch((err) => {
       console.error("Erreur lors de la copie :", err);
     });
+}
+
+function showSanctionPage() {
+  const sanctionPage = document.getElementById("sanctionPage");
+  const discordInput = document.getElementById("discord").value.trim();
+  const sanctionDiscord = document.getElementById("sanctionDiscord");
+
+  // Mettre à jour le champ Discord dans la page de sanction
+  if (discordInput) {
+    if (/^\d+$/.test(discordInput)) {
+      sanctionDiscord.value = `<@${discordInput}>`;
+    } else {
+      sanctionDiscord.value = `@${discordInput}`;
+    }
+  } else {
+    sanctionDiscord.value = "@";
+  }
+
+  // Calculer la date de fin de sanction (7 jours à partir d'aujourd'hui)
+  const today = new Date();
+  const endDate = new Date(today);
+  endDate.setDate(today.getDate() + 7);
+  const formattedEndDate = endDate.toLocaleDateString("fr-FR", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  });
+
+  document.getElementById("sanctionEndDate").value = formattedEndDate;
+
+  // Afficher la page de sanction
+  sanctionPage.style.display = "block";
+  document.body.style.overflow = "hidden"; // Empêcher le défilement de la page principale
+}
+
+function copySanctionToClipboard() {
+  const uniqueId = document.getElementById("uniqueId").value.trim();
+  const sanctionDiscord = document.getElementById("sanctionDiscord").value;
+  const sanctionEndDate = document.getElementById("sanctionEndDate").value;
+
+  const sanctionMessage = `**Motif :** Utilisation d'IA / Internet
+**ID Unique :** ${uniqueId}
+**Discord :** ${sanctionDiscord}
+**Sanction :** Attente 7 jours
+**Fin de sanction :** ${sanctionEndDate}`;
+
+  navigator.clipboard
+    .writeText(sanctionMessage)
+    .then(() => {
+      console.log("Sanction copiée dans le presse-papiers.");
+      closeSanctionPage();
+      clearSanctionForm();
+      clearForm(); // Réinitialiser le formulaire principal après la copie
+    })
+    .catch((err) => {
+      console.error("Erreur lors de la copie :", err);
+    });
+}
+
+function closeSanctionPage() {
+  const sanctionPage = document.getElementById("sanctionPage");
+  sanctionPage.style.display = "none";
+  document.body.style.overflow = "auto"; // Rétablir le défilement de la page principale
+}
+
+function clearSanctionForm() {
+  document.getElementById("uniqueId").value = "";
+  document.getElementById("sanctionDiscord").value = "";
+  document.getElementById("sanctionEndDate").value = "";
 }
 
 function clearForm() {
