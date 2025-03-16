@@ -59,7 +59,7 @@ function generatePattern() {
 
   const autreText = document.getElementById("autreText").value.trim();
   const autreMessage =
-    selectedOptions.includes("autre") && autreText ? `${autreText}` : ""; // Modification ici
+    selectedOptions.includes("autre") && autreText ? `${autreText}` : "";
 
   const motifs = selectedOptions
     .map((option) => (option === "autre" ? autreMessage : messages[option]))
@@ -106,11 +106,6 @@ ${signature}`;
   }
 
   resultDiv.dataset.textToCopy = textToCopy;
-
-  // Afficher la page de sanction si "Utilisation d'IA / Internet flagrant" est sélectionné
-  if (selectedOptions.includes("iaFlagrant")) {
-    showSanctionPage();
-  }
 }
 
 function copyToClipboard() {
