@@ -42,6 +42,7 @@ function generatePattern() {
     matricule305: ":DivisionSAPA: **Gestionnaire PA - 305 | Bijou Boubakar**",
     matricule003: ":DivisionSAPA: **Gestionnaire PA - 003 | Yahya Gonzalez**",
     matricule112: ":DivisionSAPA: **Gestionnaire PA - 112 | Adrianna Mendes**",
+    matricule054: ":DivisionSAPA: **Gestionnaire PA - 054 | Scott Ella**",
   };
 
   const selectedOptions = Array.from(
