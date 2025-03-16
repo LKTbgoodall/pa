@@ -42,7 +42,7 @@ function generatePattern() {
     matricule305: ":DivisionSAPA: **Gestionnaire PA - 305 | Bijou Boubakar**",
     matricule003: ":DivisionSAPA: **Gestionnaire PA - 003 | Yahya Gonzalez**",
     matricule112: ":DivisionSAPA: **Gestionnaire PA - 112 | Adrianna Mendes**",
-    matricule054: ":DivisionSAPA: **Gestionnaire PA - 054 | Scott Ella**", // Nouvel agent
+    matricule054: ":DivisionSAPA: **Gestionnaire PA - 054 | Scott Ella**",
   };
 
   const selectedOptions = Array.from(
@@ -59,7 +59,7 @@ function generatePattern() {
 
   const autreText = document.getElementById("autreText").value.trim();
   const autreMessage =
-    selectedOptions.includes("autre") && autreText ? `| ${autreText} |` : "";
+    selectedOptions.includes("autre") && autreText ? `${autreText}` : ""; // Modification ici
 
   const motifs = selectedOptions
     .map((option) => (option === "autre" ? autreMessage : messages[option]))
