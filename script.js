@@ -42,7 +42,7 @@ function generatePattern() {
     matricule305: ":DivisionSAPA: **Gestionnaire PA - 305 | Bijou Boubakar**",
     matricule003: ":DivisionSAPA: **Gestionnaire PA - 003 | Yahya Gonzalez**",
     matricule112: ":DivisionSAPA: **Gestionnaire PA - 112 | Adrianna Mendes**",
-    matricule054: ":DivisionSAPA: **Gestionnaire PA - 054 | Scott Ella**", // Ajout de la nouvelle signature
+    matricule054: ":DivisionSAPA: **Gestionnaire PA - 054 | Scott Ella**",
   };
 
   const selectedOptions = Array.from(
@@ -59,7 +59,7 @@ function generatePattern() {
 
   const autreText = document.getElementById("autreText").value.trim();
   const autreMessage =
-    selectedOptions.includes("autre") && autreText ? `${autreText}` : ""; // Retrait des ||
+    selectedOptions.includes("autre") && autreText ? `${autreText}` : "";
 
   const motifs = selectedOptions
     .map((option) => (option === "autre" ? autreMessage : messages[option]))
@@ -93,7 +93,7 @@ ${signature}`;
   if (motifs.length > 0) {
     textToCopy = `**[Réponse Candidature](https://media.discordapp.net/attachments/987832659201916948/1341378164554731541/image0.gif?ex=67c39f04&is=67c24d84&hm=cb806d675647b26426b1c33a844e7652248c41fb12706c056fa11d0ba2519b3c&=)**
 Candidat : ${discordFormate}
-Motifs : ${motifs.join(" | ")}
+Motifs : ||${motifs.join(" | ")}||
 Bien à vous,
 ${signature}
 -# Vous avez 3 chances ne baissez pas les bras`;
