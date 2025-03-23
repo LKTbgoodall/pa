@@ -1,0 +1,251 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #121212;
+  color: #e0e0e0;
+  margin: 20px;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #333;
+  border-radius: 10px;
+  background-color: #1e1e1e;
+}
+
+h1 {
+  text-align: center;
+  color: #ffffff;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  background-color: #2c2c2c;
+  color: #e0e0e0;
+  border: 1px solid #444;
+  border-radius: 5px;
+  font-size: 1em;
+  resize: none;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #8c00ff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+button:hover {
+  background-color: #8b05c0;
+}
+
+#result {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #333;
+  background-color: #2c2c2c;
+  color: #e0e0e0;
+  white-space: pre-wrap;
+  min-height: 80px;
+  border-radius: 5px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+#autreTextGroup {
+  margin-top: 10px;
+}
+
+.checkbox-group {
+  display: flex;
+  gap: 20px;
+}
+
+.checkbox-column {
+  flex: 1;
+}
+
+.clickable-option {
+  padding: 10px;
+  margin: 5px 0;
+  background-color: #2c2c2c;
+  border: 1px solid #444;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.clickable-option.selected {
+  background-color: #8c00ff;
+  border-color: #8c00ff;
+  color: white;
+}
+
+.fas {
+  font-size: 1.2em;
+}
+
+/* Styles pour les boutons latéraux */
+.side-buttons {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+}
+
+.side-buttons.left {
+  left: 20px;
+}
+
+.side-buttons.right {
+  right: 20px;
+}
+
+.side-button {
+  background-color: #8c00ff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  text-align: center;
+}
+
+.side-button:hover {
+  background-color: #8b05c0;
+}
+
+/* Styles pour les boutons d'entretien */
+.entretien-button {
+  background-color: #8c00ff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  margin: 5px;
+}
+
+.entretien-button:hover {
+  background-color: #8b05c0;
+}
+
+/* Styles pour la page de sanction */
+.sanction-page {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.sanction-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #1e1e1e;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #333;
+  max-width: 500px;
+  width: 100%;
+}
+
+.sanction-container h2 {
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.sanction-container .form-group {
+  margin-bottom: 15px;
+}
+
+.sanction-container input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  background-color: #2c2c2c;
+  color: #e0e0e0;
+  border: 1px solid #444;
+  border-radius: 5px;
+  font-size: 1em;
+  box-sizing: border-box;
+}
+
+.sanction-container button {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Styles pour les boutons d'entretien */
+.entretien-button {
+  background-color: #8c00ff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  margin: 5px;
+}
+
+.entretien-button:hover {
+  background-color: #8b05c0;
+}
+
+/* Ajustement pour les matricules */
+.checkbox-group {
+  margin-top: 20px;
+}
+
+/* Styles pour les boutons de motifs de refus */
+.motif-button {
+  background-color: #8c00ff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  margin: 5px;
+  width: 100%;
+  text-align: left;
+}
+
+.motif-button:hover {
+  background-color: #8b05c0;
+}

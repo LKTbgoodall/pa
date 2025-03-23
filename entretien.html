@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Entretien</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Contenu principal -->
+    <div class="container">
+      <h1>Réponses Entretien</h1>
+
+      <div class="form-group">
+        <label for="discord">Discord :</label>
+        <input
+          type="text"
+          id="discord"
+          placeholder="Ex : _lkt_ ; 170170170170170170"
+          oninput="generateResponse()"
+        />
+      </div>
+
+      <!-- Cases pour les motifs de refus -->
+      <div class="checkbox-group">
+        <div class="checkbox-column">
+          <div class="clickable-option" data-id="personnelles">
+            Personnelles < 25
+          </div>
+          <div class="clickable-option" data-id="generales">Générales < 55</div>
+        </div>
+        <div class="checkbox-column">
+          <div class="clickable-option" data-id="misesEnSituation">
+            Mises en Situation < 35
+          </div>
+          <div class="clickable-option" data-id="refuseGlobal">
+            Refus global
+          </div>
+        </div>
+      </div>
+
+      <button onclick="copyToClipboard()">
+        <i class="fas fa-copy"></i> Copier
+      </button>
+      <div id="result"></div>
+
+      <div class="checkbox-group">
+        <div class="checkbox-column">
+          <div class="clickable-option" data-id="matricule497">497</div>
+          <div class="clickable-option" data-id="matricule323">323</div>
+          <div class="clickable-option" data-id="matricule315">315</div>
+        </div>
+        <div class="checkbox-column">
+          <div class="clickable-option" data-id="matricule305">305</div>
+          <div class="clickable-option" data-id="matricule003">003</div>
+          <div class="clickable-option" data-id="matricule054">054</div>
+        </div>
+      </div>
+
+      <!-- Bouton de navigation -->
+      <button
+        class="side-button"
+        onclick="window.location.href='index.html'"
+        style="margin-top: 20px; width: 100%"
+      >
+        Aller à la page Candidature
+      </button>
+    </div>
+
+    <script src="entretien.js"></script>
+  </body>
+</html>
