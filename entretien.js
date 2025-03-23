@@ -54,20 +54,27 @@ function generateResponse() {
     )
   ).map((option) => {
     const matricules = {
-      matricule497: "**:DivisionSAPA: Gestionnaire PA - 497 | Flora Sancho**",
-      matricule323: "**:DivisionSAPA: Gestionnaire PA - 323 | Helena Mancini**",
-      matricule305: "**:DivisionSAPA: Gestionnaire PA - 305 | Bijou Boubakar**",
-      matricule003: "**:DivisionSAPA: Gestionnaire PA - 003 | Yahya Gonzalez**",
-      matricule315: "**:DivisionSAPA: Gestionnaire PA - 315 | Alba Martell**",
-      matricule054: "**:DivisionSAPA: Gestionnaire PA - 054 | Scott Ella**",
+      matricule497:
+        "**<:DivisionSAPA:990248699286392842> Gestionnaire PA - 497 | Flora Sancho**",
+      matricule323:
+        "**<:DivisionSAPA:990248699286392842> Gestionnaire PA - 323 | Helena Mancini**",
+      matricule305:
+        "**<:DivisionSAPA:990248699286392842> Gestionnaire PA - 305 | Bijou Boubakar**",
+      matricule003:
+        "**<:DivisionSAPA:990248699286392842> Gestionnaire PA - 003 | Yahya Gonzalez**",
+      matricule315:
+        "**<:DivisionSAPA:990248699286392842> Gestionnaire PA - 315 | Alba Martell**",
+      matricule054:
+        "**<:DivisionSAPA:990248699286392842> Gestionnaire PA - 054 | Scott Ella**",
       matricule112:
-        "**:DivisionSAPA: Gestionnaire PA - 112 | Adrianna Mendes**",
+        "**<:DivisionSAPA:990248699286392842> Gestionnaire PA - 112 | Adrianna Mendes**", // Ajout du matricule 112
     };
     return matricules[option.getAttribute("data-id")];
   })[0];
 
   const signature =
-    selectedMatricule || ":DivisionSAPA: Superviseur PA - 170 | Dorian Rossini";
+    selectedMatricule ||
+    "**<:DivisionSAPA:990248699286392842> Superviseur PA - 170 | Dorian Rossini**";
 
   const motifs = {
     personnelles: "Manque de développement pour les questions personnelles",
@@ -86,25 +93,49 @@ function generateResponse() {
     .map((option) => motifs[option])
     .filter((option) => option !== "");
 
-  let message;
+  // Message pour l'aperçu (simplifié)
+  let previewMessage;
   if (motifsRefus.length > 0) {
-    message = `Réponse Entretien
-  Candidat : ${discordFormate}
-  Résultat : Non Validé
-  Commentaire : ${motifsRefus.join(" | ")}
-  Bien à vous,
-  ${signature}`;
+    previewMessage = `Réponse Entretien
+Candidat : ${discordFormate}
+Résultat : Non Validé
+Commentaire : ${motifsRefus.join(" | ")}
+Bien à vous,
+${signature.replace(/\*\*/g, "")}`; // Supprime les ** pour l'aperçu
   } else {
-    message = `Réponse Entretien
-  Candidat : ${discordFormate}
-  Résultat : Validé
-  Commentaire : Félicitations ! Vous serez identifié dans le salon ⁠🎓・𝐴𝑛𝑛𝑜𝑛𝑐𝑒-𝑆𝑒𝑠𝑠𝑖𝑜𝑛 pour vous convier à la dernière étape.
-  Bien à vous,
-  ${signature}`;
+    previewMessage = `Réponse Entretien
+Candidat : ${discordFormate}
+Résultat : Validé
+Commentaire : Félicitations ! Vous serez identifié dans le salon ⁠🎓・𝐴𝑛𝑛𝑜𝑛𝑐𝑒-𝑆𝑒𝑠𝑠𝑖𝑜𝑛 pour vous convier à la dernière étape.
+Bien à vous,
+${signature.replace(/\*\*/g, "")}`; // Supprime les ** pour l'aperçu
   }
 
-  resultDiv.textContent = message;
-  resultDiv.dataset.textToCopy = message;
+  // Message complet pour la copie (avec les liens, emojis, etc.)
+  let copyMessage;
+  if (motifsRefus.length > 0) {
+    copyMessage = `**Réponse Entretien**
+Candidat : ${discordFormate}
+Résultat : **<:refused:1350470605278941317> Non Validé <:refused:1350470605278941317>**
+Commentaire :** ||${motifsRefus.join(" | ")}|| **
+Bien à vous,
+${signature}
+------------------------------`;
+  } else {
+    copyMessage = `**Réponse Entretien**
+Candidat : ${discordFormate}
+Résultat : **<:valid:1350470603454283867> Validé <:valid:1350470603454283867>**
+Commentaire :** Félicitations ! Vous serez identifié dans le salon https://discord.com/channels/978331993370681444/986092194865758288 pour vous convier à la dernière étape. **
+Bien à vous,
+${signature}
+------------------------------`;
+  }
+
+  // Afficher l'aperçu
+  resultDiv.textContent = previewMessage;
+
+  // Stocker le message complet pour la copie
+  resultDiv.dataset.textToCopy = copyMessage;
 }
 
 function copyToClipboard() {
