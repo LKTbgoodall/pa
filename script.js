@@ -93,7 +93,7 @@ function generatePattern() {
 
   const signature =
     selectedMatricule ||
-    ":DivisionSAPA: **Gestionnaire PA - 170 | Dorian Rossini**";
+    ":DivisionSAPA: **Superviseur PA - 170 | Dorian Rossini**";
 
   if (motifs.length > 0) {
     resultDiv.textContent = `Réponse Candidature
