@@ -2,7 +2,6 @@ document.querySelectorAll(".clickable-option").forEach((option) => {
   option.addEventListener("click", () => {
     option.classList.toggle("selected");
     if (option.classList.contains("selected")) {
-      // Stocker le matricule sélectionné dans le localStorage
       if (option.getAttribute("data-id").startsWith("matricule")) {
         localStorage.setItem(
           "selectedMatricule",
@@ -10,7 +9,6 @@ document.querySelectorAll(".clickable-option").forEach((option) => {
         );
       }
     } else {
-      // Si le matricule est désélectionné, supprimer du localStorage
       if (option.getAttribute("data-id").startsWith("matricule")) {
         localStorage.removeItem("selectedMatricule");
       }
@@ -19,7 +17,6 @@ document.querySelectorAll(".clickable-option").forEach((option) => {
   });
 });
 
-// Au chargement de la page, récupérer le matricule sélectionné
 window.addEventListener("load", () => {
   const selectedMatriculeId = localStorage.getItem("selectedMatricule");
   if (selectedMatriculeId) {
@@ -54,33 +51,25 @@ function generateResponse() {
     )
   ).map((option) => {
     const matricules = {
-      matricule497:
-        "**<:DivisionSAPA:990248699286392842> Gestionnaire PA - 497 | Flora Sancho**",
-      matricule323:
-        "**<:DivisionSAPA:990248699286392842> Gestionnaire PA - 323 | Helena Mancini**",
-      matricule305:
-        "**<:DivisionSAPA:990248699286392842> Gestionnaire PA - 305 | Bijou Boubakar**",
-      matricule003:
-        "**<:DivisionSAPA:990248699286392842> Gestionnaire PA - 003 | Yahya Gonzalez**",
-      matricule315:
-        "**<:DivisionSAPA:990248699286392842> Gestionnaire PA - 315 | Alba Martell**",
-      matricule054:
-        "**<:DivisionSAPA:990248699286392842> Gestionnaire PA - 054 | Scott Ella**",
-      matricule112:
-        "**<:DivisionSAPA:990248699286392842> Gestionnaire PA - 112 | Adrianna Mendes**", // Ajout du matricule 112
+      matricule497: "**<:DivisionSAPA:990248699286392842> Gestionnaire PA - 497 | Flora Sancho**",
+      matricule323: "**<:DivisionSAPA:990248699286392842> Gestionnaire PA - 323 | Helena Mancini**",
+      matricule305: "**<:DivisionSAPA:990248699286392842> Gestionnaire PA - 305 | Bijou Boubakar**",
+      matricule003: "**<:DivisionSAPA:990248699286392842> Gestionnaire PA - 003 | Yahya Gonzalez**",
+      matricule315: "**<:DivisionSAPA:990248699286392842> Gestionnaire PA - 315 | Alba Martell**",
+      matricule054: "**<:DivisionSAPA:990248699286392842> Gestionnaire PA - 054 | Scott Ella**",
+      matricule112: "**<:DivisionSAPA:990248699286392842> Gestionnaire PA - 112 | Adrianna Mendes**"
     };
     return matricules[option.getAttribute("data-id")];
   })[0];
 
-  const signature =
-    selectedMatricule ||
+  const signature = selectedMatricule ||
     "**<:DivisionSAPA:990248699286392842> Superviseur PA - 170 | Dorian Rossini**";
 
   const motifs = {
     personnelles: "Manque de développement pour les questions personnelles",
     generales: "Manque de connaissance du manuel",
     misesEnSituation: "Mauvaise réflexion pour les mises en situation",
-    refuseGlobal: "Candidat limite sur l'ensemble de l'entretien",
+    autre: document.getElementById("autreText").value.trim()
   };
 
   const selectedOptions = Array.from(
@@ -93,7 +82,11 @@ function generateResponse() {
     .map((option) => motifs[option])
     .filter((option) => option !== "");
 
-  // Message pour l'aperçu (simplifié)
+  const autreTextGroup = document.getElementById("autreTextGroup");
+  autreTextGroup.style.display = selectedOptions.includes("autre") 
+    ? "block" 
+    : "none";
+
   let previewMessage;
   if (motifsRefus.length > 0) {
     previewMessage = `Réponse Entretien
@@ -101,17 +94,16 @@ Candidat : ${discordFormate}
 Résultat : Non Validé
 Commentaire : ${motifsRefus.join(" | ")}
 Bien à vous,
-${signature.replace(/\*\*/g, "")}`; // Supprime les ** pour l'aperçu
+${signature.replace(/\*\*/g, "")}`;
   } else {
     previewMessage = `Réponse Entretien
 Candidat : ${discordFormate}
 Résultat : Validé
 Commentaire : Félicitations ! Vous serez identifié dans le salon ⁠🎓・𝐴𝑛𝑛𝑜𝑛𝑐𝑒-𝑆𝑒𝑠𝑠𝑖𝑜𝑛 pour vous convier à la dernière étape.
 Bien à vous,
-${signature.replace(/\*\*/g, "")}`; // Supprime les ** pour l'aperçu
+${signature.replace(/\*\*/g, "")}`;
   }
 
-  // Message complet pour la copie (avec les liens, emojis, etc.)
   let copyMessage;
   if (motifsRefus.length > 0) {
     copyMessage = `**Réponse Entretien**
@@ -131,10 +123,7 @@ ${signature}
 ------------------------------`;
   }
 
-  // Afficher l'aperçu
   resultDiv.textContent = previewMessage;
-
-  // Stocker le message complet pour la copie
   resultDiv.dataset.textToCopy = copyMessage;
 }
 
@@ -146,7 +135,7 @@ function copyToClipboard() {
     .writeText(textToCopy)
     .then(() => {
       console.log("Texte copié dans le presse-papiers.");
-      clearForm(); // Réinitialiser le formulaire après la copie
+      clearForm();
     })
     .catch((err) => {
       console.error("Erreur lors de la copie :", err);
@@ -154,11 +143,13 @@ function copyToClipboard() {
 }
 
 function clearForm() {
-  document.getElementById("discord").value = ""; // Réinitialiser le champ Discord
+  document.getElementById("discord").value = "";
   document
     .querySelectorAll(".clickable-option.selected:not([data-id^='matricule'])")
     .forEach((option) => {
-      option.classList.remove("selected"); // Désélectionner toutes les options sauf les matricules
+      option.classList.remove("selected");
     });
-  generateResponse(); // Mettre à jour l'aperçu
+  document.getElementById("autreText").value = "";
+  document.getElementById("autreTextGroup").style.display = "none";
+  generateResponse();
 }
