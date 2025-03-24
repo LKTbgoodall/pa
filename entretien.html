@@ -37,10 +37,18 @@
           <div class="clickable-option" data-id="misesEnSituation">
             Mises en Situation < 35
           </div>
-          <div class="clickable-option" data-id="refuseGlobal">
-            Refus global
-          </div>
+          <div class="clickable-option" data-id="autre">Autre</div>
         </div>
+      </div>
+
+      <div class="form-group" id="autreTextGroup" style="display: none">
+        <label for="autreText">Détails (autre) :</label>
+        <input
+          type="text"
+          id="autreText"
+          placeholder="Ex : Problème de comportement"
+          oninput="generateResponse()"
+        />
       </div>
 
       <button onclick="copyToClipboard()">
@@ -53,21 +61,17 @@
           <div class="clickable-option" data-id="matricule497">497</div>
           <div class="clickable-option" data-id="matricule323">323</div>
           <div class="clickable-option" data-id="matricule315">315</div>
-          <div class="clickable-option" data-id="matricule112">112</div>
         </div>
         <div class="checkbox-column">
           <div class="clickable-option" data-id="matricule305">305</div>
           <div class="clickable-option" data-id="matricule003">003</div>
           <div class="clickable-option" data-id="matricule054">054</div>
+          <div class="clickable-option" data-id="matricule112">112</div>
         </div>
       </div>
 
       <!-- Bouton de navigation -->
-      <button
-        class="side-button"
-        onclick="window.location.href='index.html'"
-        style="margin-top: 20px; width: 100%"
-      >
+      <button class="side-button" onclick="window.location.href='index.html'" style="margin-top: 20px; width: 100%;">
         Aller à la page Candidature
       </button>
     </div>
