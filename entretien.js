@@ -57,7 +57,7 @@ function generateResponse() {
       matricule003: "**<:DivisionSAPA:990248699286392842> Gestionnaire PA - 003 | Yahya Gonzalez**",
       matricule315: "**<:DivisionSAPA:990248699286392842> Gestionnaire PA - 315 | Alba Martell**",
       matricule054: "**<:DivisionSAPA:990248699286392842> Gestionnaire PA - 054 | Scott Ella**",
-      matricule112: "**<:DivisionSAPA:990248699286392842> Gestionnaire PA - 112 | Adrianna Mendes**"
+      matricule372: "**<:DivisionSAPA:990248699286392842> Gestionnaire PA - 372 | Winston Campbell**"
     };
     return matricules[option.getAttribute("data-id")];
   })[0];
