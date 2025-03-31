@@ -108,19 +108,17 @@ ${signature.replace(/\*\*/g, "")}`;
   if (motifsRefus.length > 0) {
     copyMessage = `**Réponse Entretien**
 Candidat : ${discordFormate}
-Résultat : **<:refused:1350470605278941317> Non Validé <:refused:1350470605278941317>**
+Résultat : **<:refused:1350470605278941317> [Non Validé](https://cdn.discordapp.com/attachments/986100247681957909/1356295087960756548/refu.gif?ex=67ec0bbb&is=67eaba3b&hm=fd2f9bae9a066717d8f7bfe4be3cbafb83bbcb69bd2a3fea5a61c1279e00d4a3&) <:refused:1350470605278941317>**
 Commentaire :** ||${motifsRefus.join(" | ")}|| **
 Bien à vous,
-${signature}
-------------------------------`;
+${signature}`;
   } else {
     copyMessage = `**Réponse Entretien**
 Candidat : ${discordFormate}
-Résultat : **<:valid:1350470603454283867> Validé <:valid:1350470603454283867>**
+Résultat : **<:valid:1350470603454283867> [Validé](https://cdn.discordapp.com/attachments/986100247681957909/1356295292558770367/accete.gif?ex=67ec0bec&is=67eaba6c&hm=f0957c332ef5ed87a0ac72d54c91e3548aebc0b30409372297e51e01d3b36c2e&) <:valid:1350470603454283867>**
 Commentaire :** Félicitations ! Vous serez identifié dans le salon https://discord.com/channels/978331993370681444/986092194865758288 pour vous convier à la dernière étape. **
 Bien à vous,
-${signature}
-------------------------------`;
+${signature}`;
   }
 
   resultDiv.textContent = previewMessage;
