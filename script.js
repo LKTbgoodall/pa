@@ -45,7 +45,7 @@ function generatePattern() {
   const messages = {
     age: "Âge non requis",
     nationalite: "Nationalité non américaine",
-    diplomes: "Diplôme non américain",
+    diplomes: "Diplôme non conforme",
     aucunDiplome: "Aucun diplôme possédé",
     antecedents: "Antécédents judiciaires présents",
     disponibilites: "Disponibilités faibles",
