@@ -66,6 +66,7 @@ function generatePattern() {
     matricule054: ":DivisionSAPA: **Gestionnaire PA - 054 | Scott Ella**",
     matricule029: ":DivisionSAPA: **Gestionnaire PA - 029 | Lindsay Frost**",
     matricule372: ":DivisionSAPA: **Gestionnaire PA - 372 | Winston Campbell**",
+    matricule142: ":DivisionSAPA: **Directeur-Adjoint - 142 | Damon Blake**",
   };
 
   const selectedOptions = Array.from(
@@ -95,7 +96,7 @@ function generatePattern() {
 
   const signature =
     selectedMatricule ||
-    ":DivisionSAPA: **Superviseur PA - 170 | Dorian Rossini**";
+    ":DivisionSAPA: **Directeur-Adjoint - 170 | Dorian Rossini**";
 
   if (motifs.length > 0) {
     resultDiv.textContent = `Réponse Candidature
