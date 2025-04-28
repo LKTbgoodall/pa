@@ -64,6 +64,7 @@ function generatePattern() {
     matricule003: ":DivisionSAPA: **Gestionnaire PA - 003 | Yahya Gonzalez**",
     matricule315: ":DivisionSAPA: **Gestionnaire PA - 315 | Alba Martell**",
     matricule054: ":DivisionSAPA: **Gestionnaire PA - 054 | Scott Ella**",
+    matricule029: ":DivisionSAPA: **Gestionnaire PA - 029 | Lindsay Frost**",
     matricule372: ":DivisionSAPA: **Gestionnaire PA - 372 | Winston Campbell**",
   };
 
