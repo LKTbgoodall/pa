@@ -50,21 +50,22 @@ function generateResponse() {
       ".clickable-option.selected[data-id^='matricule']"
     )
   ).map((option) => {
-    const matricules = {
-      matricule497: "**<:DivisionSAPA:990248699286392842> Gestionnaire PA - 497 | Flora Sancho**",
-      matricule323: "**<:DivisionSAPA:990248699286392842> Gestionnaire PA - 323 | Helena Parks**",
-      matricule305: "**<:DivisionSAPA:990248699286392842> Gestionnaire PA - 305 | Bijou Boubakar**",
-      matricule003: "**<:DivisionSAPA:990248699286392842> Gestionnaire PA - 003 | Yahya Gonzalez**",
-      matricule315: "**<:DivisionSAPA:990248699286392842> Gestionnaire PA - 315 | Alba Martell**",
-      matricule054: "**<:DivisionSAPA:990248699286392842> Gestionnaire PA - 054 | Scott Ella**",
-      matricule029: "**<:DivisionSAPA:990248699286392842> Gestionnaire PA - 029 | Lindsay Frost**",
-      matricule372: "**<:DivisionSAPA:990248699286392842> Gestionnaire PA - 372 | Winston Campbell**"
-    };
+  const matricules = {
+    matricule497: ":DivisionSAPA: **Gestionnaire PA - 497 | Flora Sancho**",
+    matricule323: ":DivisionSAPA: **Gestionnaire PA - 323 | Helena Parks**",
+    matricule305: ":DivisionSAPA: **Gestionnaire PA - 305 | Bijou Boubakar**",
+    matricule003: ":DivisionSAPA: **Gestionnaire PA - 003 | Yahya Gonzalez**",
+    matricule315: ":DivisionSAPA: **Gestionnaire PA - 315 | Alba Martell**",
+    matricule054: ":DivisionSAPA: **Gestionnaire PA - 054 | Scott Ella**",
+    matricule029: ":DivisionSAPA: **Gestionnaire PA - 029 | Lindsay Frost**",
+    matricule372: ":DivisionSAPA: **Gestionnaire PA - 372 | Winston Campbell**",
+    matricule142: ":DivisionSAPA: **Directeur-Adjoint - 142 | Damon Blake**",
+  };
     return matricules[option.getAttribute("data-id")];
   })[0];
 
   const signature = selectedMatricule ||
-    "**<:DivisionSAPA:990248699286392842> Superviseur PA - 170 | Dorian Rossini**";
+    "**<:DivisionSAPA:990248699286392842> Directeur-Adjoint - 170 | Dorian Rossini**";
 
   const motifs = {
     personnelles: "Manque de développement pour les questions personnelles",
