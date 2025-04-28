@@ -65,7 +65,7 @@ function generateResponse() {
   })[0];
 
   const signature = selectedMatricule ||
-    "**<:DivisionSAPA:990248699286392842> Directeur-Adjoint - 170 | Dorian Rossini**";
+    ":DivisionSAPA: **Directeur-Adjoint - 170 | Dorian Rossini**";
 
   const motifs = {
     personnelles: "Manque de développement pour les questions personnelles",
