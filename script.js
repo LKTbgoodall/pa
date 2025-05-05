@@ -55,6 +55,7 @@ function generatePattern() {
     iaFlagrant:
       "Utilisation d'IA / Internet flagrant : attente 7 jours avant de repostuler",
     lspd: "Nous sommes la SAMP et non la LSPD",
+    form: "Veuillez respecter les demandes exactes du formulaire",
   };
 
   const matricules = {
