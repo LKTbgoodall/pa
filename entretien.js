@@ -53,7 +53,6 @@ function generateResponse() {
   const matricules = {
     matricule497: ":DivisionSAPA: **Gestionnaire PA - 497 | Flora Sancho**",
     matricule323: ":DivisionSAPA: **Gestionnaire PA - 323 | Helena Parks**",
-    matricule305: ":DivisionSAPA: **Gestionnaire PA - 305 | Bijou Boubakar**",
     matricule003: ":DivisionSAPA: **Gestionnaire PA - 003 | Yahya Gonzalez**",
     matricule315: ":DivisionSAPA: **Gestionnaire PA - 315 | Alba Martell**",
     matricule054: ":DivisionSAPA: **Gestionnaire PA - 054 | Scott Ella**",
