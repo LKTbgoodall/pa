@@ -59,11 +59,9 @@ function generatePattern() {
   };
 
   const matricules = {
-    matricule497: ":DivisionSAPA: **Gestionnaire PA - 497 | Flora Sancho**",
     matricule323: ":DivisionSAPA: **Gestionnaire PA - 323 | Helena Parks**",
-    matricule003: ":DivisionSAPA: **Gestionnaire PA - 003 | Yahya Gonzalez**",
     matricule315: ":DivisionSAPA: **Gestionnaire PA - 315 | Alba Martell**",
-    matricule054: ":DivisionSAPA: **Gestionnaire PA - 054 | Scott Ella**",
+    matricule164: ":DivisionSAPA: **Gestionnaire PA - 164 | Alexis Brite**",
     matricule029: ":DivisionSAPA: **Gestionnaire PA - 029 | Lindsay Frost**",
     matricule372: ":DivisionSAPA: **Gestionnaire PA - 372 | Winston Campbell**",
     matricule142: ":DivisionSAPA: **Directeur-Adjoint - 142 | Damon Blake**",
